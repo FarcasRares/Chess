@@ -14,19 +14,27 @@ public class ChessBoard {
 
     public void Add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
         if (IsLegalBoardPosition(xCoordinate,yCoordinate)==true) {
+            if (this.pieces[xCoordinate][yCoordinate]==null){    //if the position is not occupied
                 pawn.setXCoordinate(xCoordinate);
                 pawn.setYCoordinate(yCoordinate);
                 pawn.setChessBoard(this);
               this.pieces[xCoordinate][yCoordinate] = pawn;
+            }
+            else{   //if the position is occupied
+                pawn.setXCoordinate(-1);
+                pawn.setYCoordinate(-1);
+            }
         }
-       // throw new UnsupportedOperationException("Need to implement ChessBoard.add()");
+        else{
+            pawn.setXCoordinate(-1);
+            pawn.setYCoordinate(-1);
+        }
     }
 
     public boolean IsLegalBoardPosition(int xCoordinate, int yCoordinate) {
         boolean status=true;
-        if (xCoordinate>MAX_BOARD_WIDTH || xCoordinate<0 || yCoordinate>MAX_BOARD_HEIGHT || yCoordinate <0) {
+        if (xCoordinate>=MAX_BOARD_WIDTH || xCoordinate<0 || yCoordinate>=MAX_BOARD_HEIGHT || yCoordinate <0) {
             status=false;
-           // throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
         }
         return status;
     }
