@@ -44,14 +44,35 @@ public class Pawn {
     }
 
     public void Move(MovementType movementType, int newX, int newY) {
-        if (movementType==MovementType.MOVE){
-            if (this.chessBoard.IsLegalBoardPosition(newX,newY)){
-                 if (newX!=this.getXCoordinate()) {
-                    this.setYCoordinate(this.getYCoordinate());
-                     this.setXCoordinate(this.getXCoordinate());
-                 }else{
-                     this.setYCoordinate(newY);
-                 }
+        if (movementType==MovementType.MOVE){           //Check that movement type is MOVE
+            if (this.chessBoard.IsLegalBoardPosition(newX,newY)){  //Check that the coordinates are correct
+                if(this.pieceColor==PieceColor.BLACK) {    //Check the color
+                    if (newX != this.getXCoordinate()) {  //The Pawn can't move left or right, nothings change
+                        this.setYCoordinate(this.getYCoordinate());
+                        this.setXCoordinate(this.getXCoordinate());
+                    } else {
+                        if (this.getXCoordinate()==6 && (newY==this.getYCoordinate()-2 || newY==this.getYCoordinate()-1)) { //If the Pawn is in the initial position, he can advance 2 or 1 squares
+                            this.setYCoordinate(newY);
+                        }
+                        else if (newY==this.getYCoordinate()-1){  //If the Pawn isn't in the initial position, he can move only 1 square
+                            this.setYCoordinate(newY);
+                        }
+                    }
+                }
+                else if (this.pieceColor==PieceColor.WHITE){
+                    if (newX != this.getXCoordinate()) {  //The Pawn can't move left or right, nothings change
+                        this.setYCoordinate(this.getYCoordinate());
+                        this.setXCoordinate(this.getXCoordinate());
+                    } else {
+                        if (this.getXCoordinate()==1 && (newY==this.getYCoordinate()+2 || newY==this.getYCoordinate()+1)) { //If the Pawn is in the initial position, he can advance 2 or 1 squares
+                            this.setYCoordinate(newY);
+                        }
+                        else if (newY==this.getYCoordinate()+1){  //If the Pawn isn't in the initial position, he can move only 1 square
+                            this.setYCoordinate(newY);
+                        }
+                    }
+
+                }
         }
         }
      //   throw new UnsupportedOperationException("Need to implement Pawn.Move()");
