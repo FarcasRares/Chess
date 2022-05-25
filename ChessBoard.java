@@ -17,10 +17,7 @@ public class ChessBoard {
                 pawn.setXCoordinate(xCoordinate);
                 pawn.setYCoordinate(yCoordinate);
                 pawn.setChessBoard(this);
-                Pawn aux=new Pawn(pieceColor); //in case that the sent pawn doesn't have the color setted
-                aux.setXCoordinate(xCoordinate);
-                aux.setYCoordinate(yCoordinate);
-              this.pieces[xCoordinate][yCoordinate] = aux;
+              this.pieces[xCoordinate][yCoordinate] = pawn;
         }
        // throw new UnsupportedOperationException("Need to implement ChessBoard.add()");
     }
